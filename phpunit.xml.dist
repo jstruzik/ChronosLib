@@ -11,7 +11,7 @@
          bootstrap="tests/bootstrap.php"
         >
     <testsuites>
-        <testsuite name="PhpFileManager Test Suite">
+        <testsuite name="ChronosLib Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
