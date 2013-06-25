@@ -1,4 +1,4 @@
-ChronosLib
+PhpChronosLibrary
 ==========
 
 A PHP library to interact with a [Chronos][chronos] API using [Guzzle][guzzle].
