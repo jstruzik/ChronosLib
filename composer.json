@@ -1,8 +1,8 @@
 {
-    "name": "onemightyroar/ChronosLib",
+    "name": "onemightyroar/php-chronos-lib",
     "description": "API Wrapper for Chronos",
     "type": "library",
-    "keywords": ["ChronosLib","chronos"],
+    "keywords": ["ChronosLib","chronos","php-chronos-lib"],
     "homepage": "http://onemightyroar.com/",
     "license": "MIT",
     "authors": [
