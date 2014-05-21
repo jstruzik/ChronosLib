@@ -8,6 +8,7 @@
 
 namespace OneMightyRoar\ChronosLib;
 
+use Exception;
 use Guzzle\Service\Client;
 
 /**
@@ -27,7 +28,7 @@ class ChronosLib
     /**
      * Our Guzzle client class
      *
-     * @var string
+     * @var Client
      * @access protected
      */
     protected $client;
@@ -40,13 +41,35 @@ class ChronosLib
      * Constructor
      *
      * @see Guzzle\Service\Client::__construct()
-     * @param string $chronos_url
-     * @param array $options
+     * @param string $chronos_url The url for Chronos
+     * @param array $options {optional} Guzzle configuration options
      * @access public
      */
-    public function __construct($chronos_url, array $options)
+    public function __construct($chronos_url, array $options = null)
     {
         $this->client = new Client($chronos_url, $options);
+    }
+
+    /**
+     * Return our Guzzle Client
+     *
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param string $username
+     * @param string $password
+     * @return ChronosLib
+     */
+    public function setBasicAuth($username, $password)
+    {
+        $this->getClient()->setDefaultOption('auth', array($username, $password, 'Basic'));
+
+        return $this;
     }
 
     /**
@@ -221,6 +244,7 @@ class ChronosLib
      * Backup all current jobs to a file
      *
      * @access public
+     * @throws Exception
      */
     public function createJobListBackup()
     {
@@ -228,7 +252,7 @@ class ChronosLib
         $url = parse_url($this->client->getBaseUrl());
         $backup_file = fopen($url['host'] . '-' . date('h-i-s') . '.bak', 'w');
         if (!$backup_file) {
-            throw new \Exception('File could not be opened');
+            throw new Exception('File could not be opened');
         }
 
         $jobs = $this->listJobs()->getBody();
@@ -241,6 +265,7 @@ class ChronosLib
      *
      * @param string $backup_filename
      * @access public
+     * @throws Exception
      * @return Guzzle\Http\Message\Response
      */
     public function restoreJobListFromBackup($backup_filename)
@@ -249,7 +274,7 @@ class ChronosLib
             $backup_file = file_get_contents($backup_filename);
             $jobs = json_decode($backup_file, true);
         } else {
-            throw new \Exception("File doesn't exist or isn't readable");
+            throw new Exception("File doesn't exist or isn't readable");
         }
 
         if (!empty($jobs)) {
@@ -263,7 +288,7 @@ class ChronosLib
                 $response = $request->send();
             }
         } else {
-            throw new \Exception("File does not contain content.");
+            throw new Exception("File does not contain content.");
         }
 
         return $response;
