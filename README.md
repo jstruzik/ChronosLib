@@ -15,8 +15,7 @@ Refer to the unit tests for code examples and the [Chronos API][chronos-api] for
 ## Composer Installation
 
 1. Get [Composer](http://getcomposer.org/)
-2. Require PhpFileManager with `php composer.phar require onemightyroar/php-filemanager v0.1.x`
-3. Install dependencies with `php composer.phar install`
+2. Install dependencies with `php composer.phar install` or `composer install` if installed globally
 
 ## Originally Created By
 
@@ -24,7 +23,7 @@ Refer to the unit tests for code examples and the [Chronos API][chronos-api] for
 
 ## License
 
-  Copyright (C) 2013 One Mighty Roar
+  Copyright (C) 2014 One Mighty Roar
 
 	Permission is hereby granted, free of charge, to any person obtaining
 	a copy of this software and associated documentation files (the "Software"),

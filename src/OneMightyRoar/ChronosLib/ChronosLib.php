@@ -2,7 +2,7 @@
 /**
  * One Mighty Roar
  *
- * @copyright   2013 One Mighty Roar
+ * @copyright   2014 One Mighty Roar
  * @link        http://onemightyroar.com
  */
 
